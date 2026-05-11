@@ -1,0 +1,29 @@
+{
+  "name": "cse340-course-repo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "dev": "nodemon",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RomeroTalledo/cse340-course-repo.git"
+  },
+  "author": "Dallin Erick Romero Talledo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RomeroTalledo/cse340-course-repo/issues"
+  },
+  "homepage": "https://github.com/RomeroTalledo/cse340-course-repo#readme",
+  "dependencies": {
+    "ejs": "^5.0.2",
+    "express": "^5.2.1",
+    "express-ejs-layouts": "^2.5.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
+}
