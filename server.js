@@ -44,6 +44,11 @@ app.get("/projects", async (req, res) => {
   res.render("projects", { title });
 });
 
+app.get("/categories", async (req,res) =>{
+  const title = "Categories";
+  res.render("categories", {title});
+}); 
+
 // Ruta de pagina
 
 app.listen(PORT, () => {
