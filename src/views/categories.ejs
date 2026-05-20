@@ -1,25 +1,23 @@
 <%- include('partials/header') %>
+
 <main>
+
     <h1><%= title %></h1>
 
-  <section>
-    <h2>Environmental</h2>
-    <p>Projects focused on protecting and improving the environment.</p>
-  </section>
+    <p>Here are our project categories:</p>
 
-  <section>
-    <h2>Educational</h2>
-    <p>Projects that support learning and academic growth.</p>
-  </section>
+    <ul>
 
-  <section>
-    <h2>Community Service</h2>
-    <p>Projects that help and strengthen local communities.</p>
-  </section>
+        <% categories.forEach(category => { %>
 
-  <section>
-    <h2>Health and Wellness</h2>
-    <p>Projects focused on physical and mental well-being.</p>
-  </section>
+            <li>
+                <strong><%= category.category_name %></strong>
+            </li>
+
+        <% }) %>
+
+    </ul>
+
 </main>
+
 <%- include('partials/footer') %>
