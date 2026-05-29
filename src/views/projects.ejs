@@ -1,23 +1,25 @@
 <%- include('partials/header') %>
 
-<h1><%= project.project_name %></h1>
-<p><strong>Organization:</strong> <a href="/organization/<%= project.organization_id %>"><%= project.organization_name %></a></p>
-<p><strong>Date:</strong> <%= project.project_date %></p>
-<p><strong>Description:</strong> <%= project.description %></p>
-
-<h2>Categories</h2>
-<% if (categories && categories.length > 0) { %>
-    <ul>
-        <% categories.forEach(cat => { %>
-            <li>
-                <a href="/category/<%= cat.category_id %>"><%= cat.category_name %></a>
-            </li>
-        <% }) %>
-    </ul>
-<% } else { %>
-    <p>This project has no categories assigned.</p>
-<% } %>
-
-<a href="/projects">← Back to all projects</a>
+<main>
+    <h1><%= project.project_name %></h1>
+    <p><strong>Organization:</strong> <a href="/organization/<%= project.organization_id %>"><%= project.organization_name %></a></p>
+    <p><strong>Date:</strong> <%= project.project_date %></p>
+    <p><strong>Description:</strong> <%= project.description %></p>
+    
+    <h2>Categories</h2>
+    <% if (categories && categories.length > 0) { %>
+        <ul>
+            <% categories.forEach(cat => { %>
+                <li>
+                    <a href="/category/<%= cat.category_id %>"><%= cat.category_name %></a>
+                </li>
+            <% }) %>
+        </ul>
+    <% } else { %>
+        <p>This project has no categories assigned.</p>
+    <% } %>
+    
+    <p><a href="/projects">← Back to all projects</a></p>
+</main>
 
 <%- include('partials/footer') %>

@@ -1,4 +1,4 @@
-import { getAllOrganizations, getOrganizationById, getProjectsByOrganizationId } from '../models/organization.js';
+import { getAllOrganizations, getOrganizationById, getProjectsByOrganizationId } from '../models/organizations.js';
 
 export const showOrganizations = async (req, res) => {
     try {

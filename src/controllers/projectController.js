@@ -1,5 +1,5 @@
 import { getUpcomingProjects, getProjectById } from '../models/projects.js';
-import { getCategoriesByProjectId } from '../models/categories.js'; // Asegúrate de que la ruta sea correcta
+import { getCategoriesByProjectId } from '../models/categories.js';
 
 export const showUpcomingProjects = async (req, res) => {
     try {
@@ -16,10 +16,10 @@ export const showProjectDetails = async (req, res) => {
         const projectId = req.params.id;
         const project = await getProjectById(projectId);
         if (!project) return res.status(404).render('404');
-        
-        // Obtener las categorías del proyecto
+
+        // Get categories for this project
         const categories = await getCategoriesByProjectId(projectId);
-        
+
         res.render('project', { title: project.project_name, project, categories });
     } catch (error) {
         console.error(error);
