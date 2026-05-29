@@ -8,15 +8,21 @@
 
     <ul>
 
-        <% categories.forEach(category => { %>
+    <% categories.forEach(category => { %>
 
-            <li>
-                <strong><%= category.category_name %></strong>
-            </li>
+        <li>
 
-        <% }) %>
+            <a href="/category/<%= category.category_id %>">
 
-    </ul>
+                <%= category.category_name %>
+
+            </a>
+
+        </li>
+
+    <% }) %>
+
+</ul>
 
 </main>
 
