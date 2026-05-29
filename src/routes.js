@@ -1,18 +1,19 @@
-import express from 'express';
+import express from "express";
+
+import { showHomePage } from "./controllers/index.js";
+import { showOrganizationsPage } from "./controllers/organizations.js";
+import { showProjectsPage } from "./controllers/projects.js";
+import { showCategoriesPage } from "./controllers/categories.js";
+import { testErrorPage } from "./controllers/errors.js";
+
 const router = express.Router();
 
-// CORRECTED import paths (use './controllers/')
-import { showOrganizations, showOrganizationDetails } from './controllers/organizationController.js';
-import { showUpcomingProjects, showProjectDetails } from './controllers/projectController.js';
-import { showCategoriesPage, showCategoryDetailsPage } from './controllers/categories.js';
+router.get("/", showHomePage);
+router.get("/organizations", showOrganizationsPage);
+router.get("/projects", showProjectsPage);
+router.get("/categories", showCategoriesPage);
 
-router.get('/organizations', showOrganizations);
-router.get('/organization/:id', showOrganizationDetails);
-
-router.get('/projects', showUpcomingProjects);
-router.get('/project/:id', showProjectDetails);
-
-router.get('/categories', showCategoriesPage);
-router.get('/category/:id', showCategoryDetailsPage);
+// error-handling routes
+router.get("/test-error", testErrorPage);
 
 export default router;
