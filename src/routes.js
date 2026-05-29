@@ -1,11 +1,11 @@
-// src/views/routes.js
+// src/routes.js
 import express from 'express';
 const router = express.Router();
 
-// Import controllers (adjust path if needed)
-import { showOrganizations, showOrganizationDetails } from '../controllers/organizationController.js';
-import { showUpcomingProjects, showProjectDetails } from '../controllers/projectController.js';
-import { showCategories, showCategoryDetails } from '../controllers/categoryController.js';
+// Import controllers from the correct relative path
+import { showOrganizations, showOrganizationDetails } from './controllers/organizationController.js';
+import { showUpcomingProjects, showProjectDetails } from './controllers/projectController.js';
+import { showCategoriesPage, showCategoryDetailsPage } from './controllers/categories.js';
 
 // Organization routes
 router.get('/organizations', showOrganizations);
@@ -16,7 +16,7 @@ router.get('/projects', showUpcomingProjects);
 router.get('/project/:id', showProjectDetails);
 
 // Category routes
-router.get('/categories', showCategories);
-router.get('/category/:id', showCategoryDetails);
+router.get('/categories', showCategoriesPage);
+router.get('/category/:id', showCategoryDetailsPage);
 
 export default router;
