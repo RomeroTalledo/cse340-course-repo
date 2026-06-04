@@ -19,6 +19,10 @@ const app = express();
  * Configure Express middleware
  */
 
+// Middleware to parse form data (POST bodies)
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
 // Serve static files from the public directory
 app.use(express.static(path.join(__dirname, 'public')));
 

@@ -5,7 +5,9 @@ import { showHomePage }
 
 import {
     showOrganizationsPage,
-    showOrganizationDetailsPage
+    showOrganizationDetailsPage,
+    showNewOrganizationForm,
+    processNewOrganizationForm      
 } from './controllers/organizations.js';
 
 import {
@@ -45,5 +47,8 @@ router.get('/category/:id',
 
 router.get('/test-error',
     testErrorPage);
+
+router.get('/new-organization', 
+    showNewOrganizationForm);
 
 export default router;
