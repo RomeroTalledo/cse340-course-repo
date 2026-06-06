@@ -30,25 +30,30 @@
         </a>
 
     </p>
+
     <h3>Categories</h3>
 
-<ul>
+    <ul>
 
-    <% categories.forEach(category => { %>
+        <% categories.forEach(category => { %>
 
-        <li>
+            <li>
 
-            <a href="/category/<%= category.category_id %>">
+                <a href="/category/<%= category.category_id %>">
 
-                <%= category.category_name %>
+                    <%= category.category_name %>
 
-            </a>
+                </a>
 
-        </li>
+            </li>
 
-    <% }) %>
+        <% }) %>
 
-</ul>
+    </ul>
+
+    <p><a href="/assign-categories/<%= project.project_id %>">Edit Categories</a></p>
+
+    <p><a href="/edit-project/<%= project.project_id %>">Edit Project</a></p>
 
 </main>
 
