@@ -31,6 +31,8 @@ import {
   processNewProjectForm,
   showEditProjectForm,
   processEditProjectForm,
+  processVolunteerSignup,
+  processVolunteerRemoval,
   projectValidation,
 } from "./controllers/projects.js";
 
@@ -69,6 +71,9 @@ router.post("/new-project", requireRole('admin'), projectValidation, processNewP
 
 router.get("/edit-project/:id", requireRole('admin'), showEditProjectForm);
 router.post("/edit-project/:id", requireRole('admin'), projectValidation, processEditProjectForm);
+
+router.post("/volunteer/:id", requireLogin, processVolunteerSignup);
+router.post("/remove-volunteer/:id", requireLogin, processVolunteerRemoval);
 
 router.get("/categories", showCategoriesPage);
 router.get("/category/:id", showCategoryDetailsPage);

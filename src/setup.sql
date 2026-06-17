@@ -93,6 +93,29 @@ CREATE TABLE volunteer_assignment (
 );
 
 /* =========================================
+   USER VOLUNTEER TABLE (MANY TO MANY)
+========================================= */
+
+CREATE TABLE user_volunteer (
+    user_volunteer_id SERIAL PRIMARY KEY,
+    user_id INT NOT NULL,
+    project_id INT NOT NULL,
+    signup_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT fk_uv_user
+        FOREIGN KEY (user_id)
+        REFERENCES users(user_id),
+
+    CONSTRAINT fk_uv_project
+        FOREIGN KEY (project_id)
+        REFERENCES project(project_id),
+
+    CONSTRAINT uq_user_project
+        UNIQUE (user_id, project_id)
+);
+
+
+/* =========================================
    ROLES TABLE
 ========================================= */
 CREATE TABLE roles (
@@ -398,3 +421,4 @@ SELECT * FROM project;
 SELECT * FROM project_category;
 SELECT * FROM volunteer;
 SELECT * FROM volunteer_assignment;
+SELECT * FROM user_volunteer;

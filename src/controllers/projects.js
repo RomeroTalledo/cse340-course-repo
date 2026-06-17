@@ -5,7 +5,10 @@ import {
     getProjectDetails,
     getCategoriesByProjectId,
     createProject,
-    updateProject
+    updateProject,
+    isUserVolunteering,
+    addVolunteer,
+    removeVolunteer
 } from '../models/projects.js';
 
 import { getAllOrganizations } from '../models/organizations.js';
@@ -56,12 +59,18 @@ const showProjectDetailsPage = async (req, res) => {
     const categories =
         await getCategoriesByProjectId(projectId);
 
+    let isVolunteering = false;
+    if (req.session.user) {
+        isVolunteering = await isUserVolunteering(req.session.user.user_id, projectId);
+    }
+
     const title = 'Project Details';
 
     res.render('project', {
         title,
         project,
-        categories
+        categories,
+        isVolunteering
     });
 };
 
@@ -127,6 +136,44 @@ const processEditProjectForm = async (req, res) => {
     }
 };
 
+const processVolunteerSignup = async (req, res) => {
+    const projectId = req.params.id;
+    const userId = req.session.user.user_id;
+
+    try {
+        const alreadyVolunteering = await isUserVolunteering(userId, projectId);
+
+        if (!alreadyVolunteering) {
+            await addVolunteer(userId, projectId);
+            req.flash('success', 'You have signed up to volunteer for this project!');
+        }
+    } catch (error) {
+        console.error('Error signing up to volunteer:', error);
+        req.flash('error', 'There was an error signing up to volunteer for this project.');
+    }
+
+    res.redirect(`/project/${projectId}`);
+};
+
+const processVolunteerRemoval = async (req, res) => {
+    const projectId = req.params.id;
+    const userId = req.session.user.user_id;
+
+    try {
+        await removeVolunteer(userId, projectId);
+        req.flash('success', 'You have been removed as a volunteer for this project.');
+    } catch (error) {
+        console.error('Error removing volunteer signup:', error);
+        req.flash('error', 'There was an error removing your volunteer signup.');
+    }
+
+    const redirectTo = req.body.redirectTo === 'dashboard'
+        ? '/dashboard'
+        : `/project/${projectId}`;
+
+    res.redirect(redirectTo);
+};
+
 export {
     showProjectsPage,
     showProjectDetailsPage,
@@ -134,5 +181,7 @@ export {
     processNewProjectForm,
     showEditProjectForm,
     processEditProjectForm,
+    processVolunteerSignup,
+    processVolunteerRemoval,
     projectValidation
 };
